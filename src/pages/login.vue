@@ -1,5 +1,5 @@
 <template>
-  <RouterView />
+  <div>登录页</div>
 </template>
 
 <script setup>
@@ -8,7 +8,7 @@ console.log('🚀 ~ router:', route);
 </script>
 
 <route lang="yaml">
-name: 'Home'
+name: 'Login'
 meta:
-  title: '首页'
+  title: '登录'
 </route>

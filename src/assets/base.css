@@ -41,7 +41,14 @@
   }
 }
 
-*,
+@background:--color-background;
+@background-soft:--color-background-soft;
+@background-mute:--color-background-mute;
+@boder:--color-border;
+@boder-hover:--color-border-hover;
+@heading:--color-heading;
+@text:--color-text;
+
 *::before,
 *::after {
   position: relative;

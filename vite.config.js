@@ -51,17 +51,6 @@ export default ({ mode }) => {
         extensions: ['vue'],
         // 排除components下的路由
         exclude: ['**/components/*.vue'],
-        extendRoute(route, parent) {
-          if (route.path === '/') {
-            // 不需要验证的索引
-            return route;
-          }
-          // 在路由中添加元，表明路由需要验证。
-          return {
-            ...route,
-            meta: { auth: true, title: '管理系统模板' },
-          };
-        },
       }),
       //优化生产环境下cdn方式引入第三方库
       importToCDN({
