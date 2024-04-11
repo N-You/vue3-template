@@ -1,0 +1,17 @@
+@import url('./base.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a,
+.green {
+  color: hsl(160deg 100% 37% / 100%);
+  text-decoration: none;
+  transition: 0.4s;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsl(160deg 100% 37% / 20%);
+  }
+}
