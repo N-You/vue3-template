@@ -9,9 +9,19 @@ import Components from 'unplugin-vue-components/vite';
 import Pages from 'vite-plugin-pages';
 import { Plugin as importToCDN } from 'vite-plugin-cdn-import';
 import { visualizer } from 'rollup-plugin-visualizer';
+import { viteMockServe } from 'vite-plugin-mock';
 
 export default ({ mode }) => {
   const { VITE_PORT, VITE_BASE_URL } = loadEnv(mode, process.cwd());
+
+  // 后端接口代理配置
+  const proxy = {
+    '/api': {
+      target: 'http://localhost:3000',
+      changeOrigin: true,
+      rewrite: (path) => path.replace(/^\/api/, ''),
+    },
+  };
 
   return defineConfig({
     base: VITE_BASE_URL,
@@ -82,6 +92,13 @@ export default ({ mode }) => {
           },
         ],
       }),
+      // Mock
+      viteMockServe({
+        // 在哪个文件夹下编写模拟接口的代码
+        mockPath: './src/mock',
+        // 在开发环境开启mock
+        localEnabled: true,
+      }),
       // 打包体积预览
       visualizer({
         open: true,
@@ -104,7 +121,7 @@ export default ({ mode }) => {
       },
     },
     optimizeDeps: {
-      include: ['mitt', 'dayjs', 'axios', 'pinia', '@vueuse/core'],
+      include: ['mitt', 'dayjs', 'axios', 'pinia', '@vueuse/core', 'vue-i18n'],
       exclude: ['@iconify-icons/lets-icons'],
     },
     server: {
