@@ -1,15 +1,21 @@
 import { defineConfig, loadEnv } from 'vite';
 import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue';
-import Icons from 'unplugin-icons/vite';
-import IconsResolver from 'unplugin-icons/resolver';
+
 import { VueUseComponentsResolver, ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import Pages from 'vite-plugin-pages';
 import { Plugin as importToCDN } from 'vite-plugin-cdn-import';
 import { visualizer } from 'rollup-plugin-visualizer';
+
+import Icons from 'unplugin-icons/vite';
+import IconsResolver from 'unplugin-icons/resolver';
+
 import { viteMockServe } from 'vite-plugin-mock';
+
+// svg组件插件导入
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 
 export default ({ mode }) => {
   const { VITE_PORT, VITE_BASE_URL } = loadEnv(mode, process.cwd());
@@ -30,13 +36,7 @@ export default ({ mode }) => {
       // 自动导入方法
       AutoImport({
         imports: ['vue', 'vue-router', 'pinia'],
-        resolvers: [
-          IconsResolver({
-            prefix: 'Icon',
-          }),
-          VueUseComponentsResolver(),
-          ElementPlusResolver(),
-        ],
+        resolvers: [VueUseComponentsResolver()],
         eslintrc: {
           enabled: true,
         },
@@ -45,11 +45,19 @@ export default ({ mode }) => {
       // 动态导入第三方组件
       Components({
         resolvers: [
+          // icons图标库导入
           IconsResolver({
             prefix: 'icon',
           }),
           ElementPlusResolver(),
         ],
+      }),
+      //svg插件配置
+      createSvgIconsPlugin({
+        // 指定需要缓存的图标文件夹
+        iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
+        // 指定symbolId格式
+        symbolId: 'icon-[dir]-[name]',
       }),
       // 导入icons图标
       Icons({
