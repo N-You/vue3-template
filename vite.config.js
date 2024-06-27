@@ -3,7 +3,7 @@ import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue';
 import Icons from 'unplugin-icons/vite';
 import IconsResolver from 'unplugin-icons/resolver';
-import { VueUseComponentsResolver } from 'unplugin-vue-components/resolvers';
+import { VueUseComponentsResolver, ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import Pages from 'vite-plugin-pages';
@@ -35,6 +35,7 @@ export default ({ mode }) => {
             prefix: 'Icon',
           }),
           VueUseComponentsResolver(),
+          ElementPlusResolver(),
         ],
         eslintrc: {
           enabled: true,
@@ -47,6 +48,7 @@ export default ({ mode }) => {
           IconsResolver({
             prefix: 'icon',
           }),
+          ElementPlusResolver(),
         ],
       }),
       // 导入icons图标
@@ -89,6 +91,12 @@ export default ({ mode }) => {
             name: 'vue-i18n',
             var: 'VueI18n',
             path: 'https://cdn.jsdelivr.net/npm/vue-i18n@9.11.1/dist/vue-i18n.global.min.js',
+          },
+          {
+            name: 'element-plus',
+            var: 'ElementPlus',
+            path: 'https://cdn.jsdelivr.net/npm/element-plus@2.7.6/dist/index.full.min.js',
+            css: 'https://cdn.jsdelivr.net/npm/element-plus@2.7.6/dist/index.min.css',
           },
         ],
       }),

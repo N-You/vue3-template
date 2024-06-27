@@ -1,7 +1,8 @@
 <template>
   <div class="text-red-600">{{ $t('message.hello') }}</div>
+  <el-button>Default</el-button>
   <div>
-    <v-chart class="chart" :option="option" autoresize />
+    <v-chart ref="echarts" class="chart" :option="option" />
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import { PieChart } from 'echarts/charts';
 import { TitleComponent, TooltipComponent, LegendComponent } from 'echarts/components';
 import Test from '@/api/test';
 import VChart, { THEME_KEY } from 'vue-echarts';
+import { resizeHook } from '@/hooks/resizeHook';
 
 import { useTestStore } from '@/store/modules/test';
 
@@ -61,14 +63,22 @@ const option = ref({
   ],
 });
 
+const echarts = ref();
+
 onMounted(async () => {
   const res = await Test.Test();
-  console.log('🚀 ~ onMounted ~ res:', res);
 });
+
+const onResize = () => {
+  echarts.value.resize();
+};
+
+resizeHook(onResize);
 </script>
 
 <style scoped>
 .chart {
-  height: 100vh;
+  width: 50rem;
+  height: 50rem;
 }
 </style>
