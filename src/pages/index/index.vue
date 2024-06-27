@@ -1,6 +1,7 @@
 <template>
   <div class="text-red-600">{{ $t('message.hello') }}</div>
   <el-button>Default</el-button>
+  <SvgIcon name="logo" style="width: 1rem; height: 1rem" />
   <div>
     <v-chart ref="echarts" class="chart" :option="option" />
   </div>
