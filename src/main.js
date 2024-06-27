@@ -12,6 +12,10 @@ import '@/style/index.less';
 
 import NProgress from 'nprogress';
 
+// svg封装插件
+import SvgIcon from '@/components/SvgIcon.vue';
+import 'virtual:svg-icons-register';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
@@ -31,4 +35,5 @@ const app = createApp(App);
 app.use(router);
 app.use(store);
 app.use(i18n);
+app.component('svg-icon', SvgIcon);
 app.mount('#app');
