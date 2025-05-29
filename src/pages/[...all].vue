@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="box">
     <img src="@/assets/images/404.png" class="bg" />
     <div class="btn">
       <a href="/" class="goindex">回到首页</a>
@@ -24,7 +24,7 @@ img {
   user-select: none;
 }
 
-.container {
+.box {
   max-width: 90%;
   margin: 10vh auto;
   padding-top: 80px;

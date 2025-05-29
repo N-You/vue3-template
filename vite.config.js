@@ -2,7 +2,7 @@ import { defineConfig, loadEnv } from 'vite';
 import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue';
 
-import { VueUseComponentsResolver } from 'unplugin-vue-components/resolvers';
+import { VueUseComponentsResolver, ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import Pages from 'vite-plugin-pages';
@@ -49,6 +49,7 @@ export default ({ mode }) => {
           IconsResolver({
             prefix: 'icon',
           }),
+          ElementPlusResolver(),
         ],
       }),
       //svg插件配置
@@ -98,6 +99,17 @@ export default ({ mode }) => {
             name: 'vue-i18n',
             var: 'VueI18n',
             path: 'https://cdn.jsdelivr.net/npm/vue-i18n@9.11.1/dist/vue-i18n.global.min.js',
+          },
+          {
+            name: 'element-plus',
+            var: 'ElementPlus',
+            path: 'https://unpkg.com/element-plus@2.7.6',
+            css: 'https://unpkg.com/element-plus@2.7.6/dist/index.css',
+          },
+          {
+            name: '@element-plus/icons-vue',
+            var: 'ElementPlusIconsVue',
+            path: 'https://unpkg.com/@element-plus/icons-vue@2.3.1',
           },
         ],
       }),
