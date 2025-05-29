@@ -103,8 +103,13 @@ export default ({ mode }) => {
           {
             name: 'element-plus',
             var: 'ElementPlus',
-            path: 'https://cdn.jsdelivr.net/npm/element-plus@2.7.6/dist/index.full.min.js',
-            css: 'https://cdn.jsdelivr.net/npm/element-plus@2.7.6/dist/index.min.css',
+            path: 'https://unpkg.com/element-plus@2.7.6',
+            css: 'https://unpkg.com/element-plus@2.7.6/dist/index.css',
+          },
+          {
+            name: '@element-plus/icons-vue',
+            var: 'ElementPlusIconsVue',
+            path: 'https://unpkg.com/@element-plus/icons-vue@2.3.1',
           },
         ],
       }),
