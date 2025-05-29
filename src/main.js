@@ -10,8 +10,6 @@ import i18n from './locales/index';
 import '@/assets/main.css';
 import '@/style/index.less';
 
-import 'element-plus/dist/index.css';
-
 import NProgress from 'nprogress';
 
 // svg封装插件
